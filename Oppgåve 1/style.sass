@@ -1,0 +1,107 @@
+// category variablar
+// link https://sass-lang.com/documentation/variables
+
+// Generert fargepalett
+// link https://coolors.co/3dd6d0-ffe45c-ff006e-525174-56445d
+
+$primaer-farge: #3dd6d0
+$sekundaer-farge: #ffe45c
+$tredje-farge: #ff006e
+$fjerde-farge: #525174
+$femte-farge: #56445d
+
+$mork-farge: darken(grey, 50%)
+$lys-farge: lighten(grey, 50%)
+
+$debug-farge: red
+
+
+
+// category mixins
+// link https://sass-lang.com/documentation/at-rules/mixin
+
+// Set elementet på midten
+@mixin midtstill($juster-display: false, $hoyde-margin: 0)
+    margin: $hoyde-margin auto $hoyde-margin auto
+    @if $juster-display
+        display: inline-block 
+
+// Set ein standard border på elementet
+@mixin grense($grense-farge)
+    border: .2em solid $grense-farge
+
+// Endring i farge på :hover og :active
+@mixin hover-active($farge: $primaer-farge, $endring: 10%)
+    &:hover
+        background-color: darken($farge, $endring)
+    
+    &:active
+        background-color: lighten($farge, $endring)
+
+
+
+// category stilar  
+
+body
+    margin: 0
+    font-family: Arial, Helvetica, sans-serif
+    color: $lys-farge
+    min-height: 100vh
+    background-color: $femte-farge
+
+h1, h2, h3, h4, h5, h6
+    @include midtstill($hoyde-margin: .5em)
+    border-bottom: .1em solid $lys-farge
+    
+    text-align: center
+    width: fit-content
+
+main
+    @include midtstill
+    @include grense($grense-farge: $mork-farge)
+
+    width: 80vw
+    padding: 1em
+    background-color: $lys-farge
+    color: $mork-farge
+
+    display: flex
+    flex-flow: row wrap
+    justify-content: space-evenly
+
+    box-shadow: 5px 5px 5px $mork-farge
+
+    h2
+        flex-basis: 100%
+        border-bottom: .1em solid $mork-farge
+
+.inputContainer
+    padding: .4em
+    width: fit-content
+    margin: 0
+
+    display: inline-grid
+    grid-template-rows: 1fr 1fr
+    grid-template-columns: 1fr
+
+    input
+        margin-top: -.4em
+
+
+button
+    @include grense($mork-farge)
+    @include hover-active
+
+    background-color: $primaer-farge
+    width: 200px
+    height: 3em
+    font-size: 1em
+    
+    align-self: flex-end
+
+input
+    height: 2em
+    font-size: 1em
+
+    &::-webkit-inner-spin-button
+        display: none
