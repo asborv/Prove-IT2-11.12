@@ -237,19 +237,32 @@ function leggTilLag(e) {
         ...acc kopierer acc for kvar iterasjon, slik at han ikkje vert skrive over av seg sjølv
         [input.name] er ein "computed property". Kan brukast som nøkkel sidan input.name stemmer med objekta i lagArr
         Ternaty operator på verdi; cast til tal dersom mogleg
-        */
-       // link https://www.youtube.com/watch?v=P-jKHhr6YxI&feature=emb_title&ab_channel=JuniorDeveloperCentral
-       const nyttLag = Array.from(document.querySelectorAll("#registerLagSkjema input"))
-       .reduce((acc, input) => ({
-           ...acc,
-           [input.name]: isNaN(input.value) ? input.value : parseInt(input.value)
-        }), {});
+    */
+    // link https://www.youtube.com/watch?v=P-jKHhr6YxI&feature=emb_title&ab_channel=JuniorDeveloperCentral
+    const nyttLag = Array.from(document.querySelectorAll("#registerLagSkjema input"))
+    .reduce((acc, input) => ({
+        ...acc,
+        [input.name]: isNaN(input.value) ? input.value : parseInt(input.value)
+    }), {});
 
     // Oppdaterer nettsida
+    tomSkjema(e.target);
     lagArr.push(nyttLag);
     summerAllePoeng(lagArr);
     oppdaterTabell(lagArr, lagOversiktBody);
     oppdaterTabell(formaterToppLag(finnTopp(3)), toppTreBody);
+}
+
+/** 
+* Itererer over alle inputs i skjemaet sendt inn og set verdien til tom streng.
+* Merk at skjema MÅ ha id.
+* Dette vil òg setje verdi til submit-input til tom streng, som kan føre til bugs.
+* @param {Element} skjema - Skjemaet ein vil tømme
+* @return {undefined}
+*/
+function tomSkjema(skjema) {
+    const inputArr = document.querySelectorAll(`#${skjema.id} input`);
+    inputArr.forEach(inputFelt => inputFelt.value = "");
 }
 
 
