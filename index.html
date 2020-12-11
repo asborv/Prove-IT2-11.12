@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karanteneligaen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h1>Karanteneligaen</h1>
+
+    <main>
+
+        <h2>Lagoversikt:</h2>
+        <table id="lagOversikt">
+            <!--
+                Delar eksplisitt i <thead> og <tbody> for å ha kontroll
+                når JS arbeider med tabellen
+            -->
+            <thead>
+                <tr id="lagOversiktRad1">
+                    <th>Lag</th>
+                    <th>Spilt</th>
+                    <th>Vunnet</th>
+                    <th>Uavgjort</th>
+                    <th>Tap</th>
+                    <th>Poeng</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <h2>Legg til eit lag</h2>
+        <form action="" id="registerLagSkjema">
+            <div class="inputBeholder">
+                <label for="lagInput">Lag:</label>
+                <input type="text" name="lag" id="lagInput" maxlength="20" required>
+            </div>
+            <!-- TODO denne er overflødig. Rekn ut kampar spelt og fjern -->
+            <div class="inputBeholder">
+                <label for="spiltInput">Kampar spelt:</label>
+                <input type="number" name="spilt" id="spiltInput" min="0" max="100" step="1" required>
+            </div>
+            <div class="inputBeholder">
+                <label for="vunnetInput">Vunne:</label>
+                <input type="number" name="vunnet" id="vunnetInput" min="0" max="100" step="1" required>
+            </div>
+            <div class="inputBeholder">
+                <label for="uavgjortInput">Uavgjort:</label>
+                <input type="number" name="uavgjort" id="uavgjortInput" min="0" max="100" step="1" required>
+            </div>
+            
+            <div class="inputBeholder">
+                <label for="tapInput">Tap:</label>
+                <input type="number" name="tap" id="tapInput" min="0" max="100" step="1" required>
+            </div>
+        </form>
+        <button type="submit" id="registerLagSkjemaKnapp" form="registerLagSkjema">Legg til laget</button>
+
+        <h2>Trekk tilfeldige lag:</h2>
+        <button id="trekkLagKnapp">Trekk!</button>
+            <div class="tilfeldigeLagBeholder">
+            <h3>Laga er:</h3>
+            <ul id="valgteLagListe"></ul>
+        </div>
+
+        <h2>Topp 3</h2>
+        <table id="toppTre">
+            <thead>
+                <tr>
+                    <th>Medalje</th>
+                    <th>Lag</th>
+                    <th>Poeng</th>
+                </tr>
+            </thead>
+            <tbody></tbody>    
+        </table>
+
+    </main>
+
+
+    <!-- category import av JS -->
+    <script src="code.js"></script>
+</body>
+</html>

@@ -27,7 +27,7 @@ $debug-farge: red
         display: inline-block 
 
 // Set ein standard border på elementet
-@mixin grense($grense-farge)
+@mixin grense($grense-farge: black)
     border: .2em solid $grense-farge
 
 // Endring i farge på :hover og :active
@@ -53,6 +53,7 @@ h1, h2, h3, h4, h5, h6
     @include midtstill($hoyde-margin: .5em)
     border-bottom: .1em solid $lys-farge
     
+    font-size: 2em
     text-align: center
     width: fit-content
 
@@ -68,6 +69,7 @@ main
     display: flex
     flex-flow: row wrap
     justify-content: space-evenly
+    gap: 1em
 
     box-shadow: 5px 5px 5px $mork-farge
 
@@ -75,18 +77,34 @@ main
         flex-basis: 100%
         border-bottom: .1em solid $mork-farge
 
-.inputContainer
-    padding: .4em
-    width: fit-content
-    margin: 0
+table
+    // Mange harde marginar, flyt over på smalare skjermar
+    width: min-content
+    border-collapse: collapse
+    font-size: 1.4em
+    color: black
 
-    display: inline-grid
-    grid-template-rows: 1fr 1fr
-    grid-template-columns: 1fr
+tr
+    // Set alternerande gråfarge
+    &:nth-child(even)
+        background-color: lighten($fjerde-farge, 40)
 
-    input
-        margin-top: -.4em
+td, th
+    @include grense
+    
+td
+    padding: .5em 2em
 
+#lagOversikt
+    th
+        @include hover-active
+        &:hover
+            cursor: pointer
+        
+
+th
+    padding: .8em 1.4em
+    background-color: $primaer-farge
 
 button
     @include grense($mork-farge)
@@ -99,6 +117,24 @@ button
     
     align-self: flex-end
 
+.tilfeldigeLagBeholder
+    padding: .8em
+    @include grense()
+
+.inputBeholder
+    padding: .4em
+    width: fit-content
+    margin: 0
+
+    display: inline-grid
+    grid-template-rows: 1fr 1fr
+    grid-template-columns: 1fr
+
+    input
+        margin-top: -.4em
+        width: 12em
+
+    
 input
     height: 2em
     font-size: 1em

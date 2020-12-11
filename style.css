@@ -1,0 +1,135 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  min-height: 100vh;
+  background-color: #56445d;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0.5em auto 0.5em auto;
+  border-bottom: 0.1em solid white;
+  font-size: 2em;
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+main {
+  margin: 0 auto 0 auto;
+  border: 0.2em solid #010101;
+  width: 80vw;
+  padding: 1em;
+  background-color: white;
+  color: #010101;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  gap: 1em;
+  -webkit-box-shadow: 5px 5px 5px #010101;
+          box-shadow: 5px 5px 5px #010101;
+}
+
+main h2 {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  border-bottom: 0.1em solid #010101;
+}
+
+table {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  border-collapse: collapse;
+  font-size: 1.4em;
+  color: black;
+}
+
+tr:nth-child(even) {
+  background-color: #bfbfd2;
+}
+
+td, th {
+  border: 0.2em solid black;
+}
+
+td {
+  padding: .5em 2em;
+}
+
+#lagOversikt th:hover {
+  background-color: #27b9b3;
+}
+
+#lagOversikt th:active {
+  background-color: #67dfda;
+}
+
+#lagOversikt th:hover {
+  cursor: pointer;
+}
+
+th {
+  padding: .8em 1.4em;
+  background-color: #3dd6d0;
+}
+
+button {
+  border: 0.2em solid #010101;
+  background-color: #3dd6d0;
+  width: 200px;
+  height: 3em;
+  font-size: 1em;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+button:hover {
+  background-color: #27b9b3;
+}
+
+button:active {
+  background-color: #67dfda;
+}
+
+.tilfeldigeLagBeholder {
+  padding: .8em;
+  border: 0.2em solid black;
+}
+
+.inputBeholder {
+  padding: .4em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+  display: -ms-inline-grid;
+  display: inline-grid;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.inputBeholder input {
+  margin-top: -.4em;
+  width: 12em;
+}
+
+input {
+  height: 2em;
+  font-size: 1em;
+}
+
+input::-webkit-inner-spin-button {
+  display: none;
+}
+/*# sourceMappingURL=style.css.map */
