@@ -236,12 +236,13 @@ function leggTilLag(e) {
         Ettrsom acc = {} for fyrste iterasjon, kan ein leggje nøkkel: verdi-par inn
         ...acc kopierer acc for kvar iterasjon, slik at han ikkje vert skrive over av seg sjølv
         [input.name] er ein "computed property". Kan brukast som nøkkel sidan input.name stemmer med objekta i lagArr
-    */
-    // link https://www.youtube.com/watch?v=P-jKHhr6YxI&feature=emb_title&ab_channel=JuniorDeveloperCentral
-    const nyttLag = Array.from(document.querySelectorAll("#registerLagSkjema input"))
-        .reduce((acc, input) => ({
-            ...acc,
-            [input.name]: input.value
+        Ternaty operator på verdi; cast til tal dersom mogleg
+        */
+       // link https://www.youtube.com/watch?v=P-jKHhr6YxI&feature=emb_title&ab_channel=JuniorDeveloperCentral
+       const nyttLag = Array.from(document.querySelectorAll("#registerLagSkjema input"))
+       .reduce((acc, input) => ({
+           ...acc,
+           [input.name]: isNaN(input.value) ? input.value : parseInt(input.value)
         }), {});
 
     // Oppdaterer nettsida
