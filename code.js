@@ -7,6 +7,9 @@ const trekkLagKnapp = document.getElementById("trekkLagKnapp");
 const valgteLagListe = document.getElementById("valgteLagListe");
 const registerLagSkjemaKnapp = document.getElementById("registerLagSkjemaKnapp");
 const registerLagSkjema = document.getElementById("registerLagSkjema");
+const spiltInput = document.getElementById("spiltInput");
+// Alle tal-inputs som ikkje er totalt
+const kampStatusArr = Array.from(document.querySelectorAll("#registerLagSkjema input[type=number]:not(#spiltInput)"));
 
 
 
@@ -265,6 +268,21 @@ function tomSkjema(skjema) {
     inputArr.forEach(inputFelt => inputFelt.value = "");
 }
 
+/** 
+* Summerer alle kampane frå spelt, vunne og tapt, og set verdien til relevant input til riktig tal.
+* Sikrar at skjema ikkje vert sendt dersom det er for mange kampar.
+* @param {Event} e - Event
+* @return {undefined}
+*/
+function oppdaterKamperSpilt(e) {
+    // Summerer kampane
+    const kamperTotalt = kampStatusArr.reduce((a, b) => a + Number(b.value), 0);
+    spiltInput.value = kamperTotalt;
+
+    // Sikrar at ikkje for mange kampar vert sendt inn
+    registerLagSkjemaKnapp.disabled = kamperTotalt > 100;
+}
+
 
 
 // category event listeners
@@ -294,6 +312,7 @@ trekkLagKnapp.addEventListener("click", () => {
 });
 
 registerLagSkjema.addEventListener("submit", leggTilLag);
+registerLagSkjema.addEventListener("input", oppdaterKamperSpilt);
 
 
 
