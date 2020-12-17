@@ -15,10 +15,8 @@ const kampStatusArr = Array.from(document.querySelectorAll("#registerLagSkjema i
 
 // category variablar
 
-// Array med lag. Mogleg å endre mtp oppg. 7
 // Sjølv om poeng er initialisert som 0, vert dei rekna ut dynamisk
-// todo legg til summerAllePoeng v/ start av program
-let lagArr = [
+const lagArr = [
     {lag: "Bodø/Glimt", spilt: 28, vunnet: 24, uavgjort: 3, tap: 1, poeng: 0},
     {lag: "Molde", spilt: 27, vunnet: 18, uavgjort: 2, tap: 7, poeng: 0},
     {lag: "Vålerenga", spilt: 28, vunnet: 14, uavgjort: 9, tap: 5, poeng: 0},
@@ -294,9 +292,7 @@ function oppdaterKamperSpilt(e) {
     Funksjonen til event listeneren brukar funksjonen for å finne alfabetisk/numerisk sorteringsalgoritme
     nokkel kjem frå .innerHTML ettersom den stemmer med nøklane i lagArr
 */
-// TODO legg til funksjonalitet om å reversere annankvar gong: x % 0 ? ... : ...
-// TODO endre <h2> til å vise kva det er sortert etter
-// TODO vis brukar korleis sortere
+// TODO endre tabelloverskrift til å vise kva det er sortert etter (pil opp/ned)
 Array.from(lagOversiktRad1.children)
     .forEach(thElement => {
         thElement.addEventListener("click", ({target}) => {
