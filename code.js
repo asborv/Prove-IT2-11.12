@@ -8,6 +8,7 @@ const valgteLagListe = document.getElementById("valgteLagListe");
 const registerLagSkjemaKnapp = document.getElementById("registerLagSkjemaKnapp");
 const registerLagSkjema = document.getElementById("registerLagSkjema");
 const spiltInput = document.getElementById("spiltInput");
+const trekkLagRange = document.getElementById("trekkLagRange");
 // Alle tal-inputs som ikkje er totalt
 const kampStatusArr = Array.from(document.querySelectorAll("#registerLagSkjema input[type=number]:not(#spiltInput)"));
 
@@ -71,7 +72,17 @@ function oppdaterTabell(lagArr, tabellBody) {
     }
 
     // Itererer over lagArr, legg til rad for alle radane
-    lagArr.forEach(lag => leggTilRad(Object.values(lag), tabellBody))
+    lagArr.forEach(lag => leggTilRad(Object.values(lag), tabellBody));
+
+    oppdaterRange();
+}
+
+/** 
+* Oppdaterer max-verdien til slideren, slik at ein kan trekke riktig tal lag
+* @return {undefined}
+*/
+function oppdaterRange() {
+    trekkLagRange.max = lagArr.length;
 }
 
 /** 
@@ -303,13 +314,13 @@ Array.from(lagOversiktRad1.children)
     })
 ;
 
-trekkLagKnapp.addEventListener("click", () => {
-    oppdaterListe(lagNyeListePunkter(...trekkLag(2)), valgteLagListe);
+trekkLagRange.addEventListener("input", ({ target }) => {
+    oppdaterListe(lagNyeListePunkter(...trekkLag(parseInt(target.value))), valgteLagListe);
 });
 
 registerLagSkjema.addEventListener("submit", leggTilLag);
 registerLagSkjema.addEventListener("input", oppdaterKamperSpilt);
-
+// trekkLagRange.addEventListener("input", ({ target }) => 1)
 
 
 // category køyr automatisk

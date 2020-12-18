@@ -37,7 +37,6 @@
                 <label for="lagInput">Lag:</label>
                 <input type="text" name="lag" id="lagInput" maxlength="20" required>
             </div>
-            <!-- TODO denne er overflødig. Rekn ut kampar spelt og fjern -->
             <div class="inputBeholder">
                 <label for="spiltInput">Kampar spelt:</label>
                 <input type="number" name="spilt" id="spiltInput" min="0" max="100" step="1" value="0" required disabled>
@@ -59,8 +58,8 @@
         <button type="submit" id="registerLagSkjemaKnapp" form="registerLagSkjema">Legg til laget</button>
 
         <h2>Trekk tilfeldige lag:</h2>
-        <button id="trekkLagKnapp">Trekk!</button>
-            <div class="tilfeldigeLagBeholder">
+        <input type="range" name="trekkLagRange" id="trekkLagRange" min="2" max="3" step="1">
+        <div class="tilfeldigeLagBeholder">
             <h3>Laga er:</h3>
             <ul id="valgteLagListe"></ul>
         </div>
@@ -78,6 +77,7 @@
         </table>
 
     </main>
+
 
 
     <!-- category import av JS -->
