@@ -80,6 +80,10 @@ td {
 th {
   padding: .8em 1.4em;
   background-color: #3dd6d0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 button {
@@ -131,5 +135,29 @@ input {
 
 input::-webkit-inner-spin-button {
   display: none;
+}
+
+.sortert-stigende::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 0.5em;
+  position: relative;
+  border-top-color: #010101;
+  top: 1em;
+}
+
+.sortert-synkende::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 0.5em;
+  position: relative;
+  border-bottom-color: #010101;
+  bottom: .6em;
 }
 /*# sourceMappingURL=style.css.map */
