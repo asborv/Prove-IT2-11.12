@@ -26,6 +26,8 @@ const lagArr = [
 
 const medaljeArr = ["🥇", "🥈", "🥉"];
 
+const sorterTeller = {navn: "", teller: 0};
+
 
 
 // category funksjonar
@@ -252,10 +254,11 @@ function leggTilLag(e) {
     */
     // link https://www.youtube.com/watch?v=P-jKHhr6YxI&feature=emb_title&ab_channel=JuniorDeveloperCentral
     const nyttLag = Array.from(document.querySelectorAll("#registerLagSkjema input"))
-    .reduce((acc, input) => ({
-        ...acc,
-        [input.name]: isNaN(input.value) ? input.value : parseInt(input.value)
-    }), {});
+        .reduce((acc, input) => ({
+            ...acc,
+            [input.name]: isNaN(input.value) ? input.value : parseInt(input.value)
+        }), {})
+    ;
 
     // Oppdaterer nettsida
     tomSkjema(e.target);
@@ -263,6 +266,9 @@ function leggTilLag(e) {
     summerAllePoeng(lagArr);
     oppdaterTabell(lagArr, lagOversiktBody);
     oppdaterTabell(formaterToppLag(finnTopp(3)), toppTreBody);
+
+    // Fjerner indikasjon på sortering
+    Array.from(lagOversiktRad1.children).forEach(thElement => thElement.className = "");
 }
 
 /** 
@@ -292,6 +298,29 @@ function oppdaterKamperSpilt(e) {
     registerLagSkjemaKnapp.disabled = kamperTotalt > 100;
 }
 
+function sorteringsKlikk({ target }) {
+    const nokkel = target.innerHTML.toLowerCase();
+    lagArr.sort(automatiskSortering(lagArr, nokkel));
+
+    // Sett tilbake stigande/synkande alternering dersom ein sorterer etter ein ny rad
+    if (sorterTeller.navn !== target.innerHTML) {
+        sorterTeller.teller = 0;
+        sorterTeller.navn = target.innerHTML;
+    }
+
+    // Alternerer stigande/synkande
+    if (sorterTeller.teller % 2) lagArr.reverse();
+    sorterTeller.teller++;
+    oppdaterTabell(lagArr, lagOversiktBody);
+
+    // Indikasjonspiler
+    Array.from(lagOversiktRad1.children).forEach(thElement => thElement.className = "");
+    target.className = sorterTeller.teller % 2
+        ? "sortert-synkende"
+        : "sortert-stigende"
+    ;
+}
+
 
 
 // category event listeners
@@ -303,14 +332,9 @@ function oppdaterKamperSpilt(e) {
     Funksjonen til event listeneren brukar funksjonen for å finne alfabetisk/numerisk sorteringsalgoritme
     nokkel kjem frå .innerHTML ettersom den stemmer med nøklane i lagArr
 */
-// TODO endre tabelloverskrift til å vise kva det er sortert etter (pil opp/ned)
 Array.from(lagOversiktRad1.children)
     .forEach(thElement => {
-        thElement.addEventListener("click", ({target}) => {
-            const nokkel = target.innerHTML.toLowerCase();
-            lagArr.sort(automatiskSortering(lagArr, nokkel));
-            oppdaterTabell(lagArr, lagOversiktBody);
-        });
+        thElement.addEventListener("click", sorteringsKlikk);
     })
 ;
 
@@ -320,7 +344,6 @@ trekkLagRange.addEventListener("input", ({ target }) => {
 
 registerLagSkjema.addEventListener("submit", leggTilLag);
 registerLagSkjema.addEventListener("input", oppdaterKamperSpilt);
-// trekkLagRange.addEventListener("input", ({ target }) => 1)
 
 
 // category køyr automatisk

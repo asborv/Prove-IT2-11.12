@@ -38,6 +38,29 @@ $debug-farge: red
     &:active
         background-color: lighten($farge, $endring)
 
+@mixin trekant($retning, $storrelse, $farge)
+    content: ""
+    width: 0
+    height: 0
+    border-color: transparent
+    border-style: solid
+    border-width: $storrelse / 2
+    position: relative
+
+    @if $retning == opp
+        border-bottom-color: $farge
+        bottom: .6em
+    @else if $retning == ned
+        border-top-color: $farge 
+        top: $storrelse
+    // 2 under fungerer ikkje skikkeleg mtp breidd
+    @else if $retning == venstre
+        border-right-color: $farge 
+    @else if $retning == hoyre
+        border-left-color: $farge 
+    @else
+        @error "Ukjend retning: #{$retning}"
+
 
 
 // category stilar  
@@ -100,11 +123,11 @@ td
         @include hover-active
         &:hover
             cursor: pointer
-        
 
 th
     padding: .8em 1.4em
     background-color: $primaer-farge
+    user-select: none
 
 button
     @include grense($mork-farge)
@@ -134,10 +157,16 @@ button
         margin-top: -.4em
         width: 12em
 
-    
 input
     height: 2em
     font-size: 1em
 
     &::-webkit-inner-spin-button
         display: none
+
+.sortert-stigende::after
+    @include trekant(ned, 1em, $mork-farge)
+    
+.sortert-synkende::after
+    @include trekant(opp, 1em, $mork-farge)
+    
